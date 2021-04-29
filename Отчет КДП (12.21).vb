@@ -226,7 +226,7 @@ Columns(28).Delete
 Columns(29).Delete
 Columns(30).Delete
 Columns(31).Delete
-Columns(11).Delete
+Columns(10).Delete
 Columns(11).Delete
 Columns(12).Delete
 Columns(13).Delete
@@ -248,7 +248,7 @@ Columns(28).Delete
 Columns(29).Delete
 Columns(30).Delete
 Columns(31).Delete
-Columns(11).Delete
+Columns(10).Delete
 
 'Форматирования всей таблици
 
