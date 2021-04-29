@@ -180,10 +180,6 @@ Application.DisplayAlerts = True
 
 Range("A1").RemoveDuplicates 1
 
-'__________________________ВСЕ РАБОТАЕТ ДО ЭТОЙ СТРОКИ__________________________
-
-
-
 Range("F2").Select
 Application.CutCopyMode = False
 ActiveCell.FormulaR1C1 = "=RC[-2]-RC[-4]-RC[-1]+RC[-3]"
