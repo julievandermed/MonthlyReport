@@ -1,14 +1,15 @@
-Sub MonthlyReport()
+Sub Monthly_Report_04_21()
 
 'Создание нового листа с конечной таблицей за месяц
 
 Sheets.Add.Name = "Отчет по трудозатратам за 04.21"
 
+'Добавление столбцов с заголовками в конечной таблицы
+
 Worksheets("Отчет по трудозатратам за 04.21").Activate
 
 Dim Col1 As Range: Set Col1 = Application.Range("A:A")
 Col1.Insert Shift:=xlShiftToRight
-'Coll(1).RowWidth = 15
 
 [A1] = "ФИО"
 
@@ -47,7 +48,7 @@ Range("A1:F1").Font.ColorIndex = 2
 
 Range("A1:F1").VerticalAlignment = xlCenter
 
-'Ввод месячного часового норматива (изменяемая величина)
+'Ввод месячного часового норматива за Апрель
 
 [B2:B500] = "175"
 
@@ -111,6 +112,8 @@ Columns(2).Delete
 Columns(4).Delete
 Columns(2).Delete
 
+'Копирование таблицы со всеми сотрудниками для дальнейшей обработки
+
 Worksheets("All").Activate
 
 Range("A1:A500").Select
@@ -119,8 +122,11 @@ Sheets("Отчет по трудозатратам за 04.21").Select
 Range("W1:W500").Select
 Selection.Insert Shift:=xlDown
 
+'Удаление форматирования во всем файле
 
 ActiveSheet.UsedRange.Value = ActiveSheet.UsedRange.Value
+
+'Копирование таблицы с сотрудниками, которые заполнили Clockify за прошлый месяц для дальнейшей обработки
 
 Worksheets("Summary Report").Activate
 
@@ -130,6 +136,7 @@ Sheets("Отчет по трудозатратам за 04.21").Select
 Range("T:U").Select
 Selection.Insert Shift:=xlDown
 
+'Копирование таблицы с трудозатратами за прошлый месяц
 
 Worksheets("Отчет по трудозатратам за 03.21").Activate
 
@@ -139,15 +146,19 @@ Sheets("Отчет по трудозатратам за 04.21").Select
 Range("J:O").Select
 Selection.Insert Shift:=xlDown
 
+'Повторное удаление форматирования во всем файле (необходимо для из-за формул в прошлой таблице)
+
 ActiveSheet.UsedRange.Value = ActiveSheet.UsedRange.Value
 
-'Копирование всех фамилий, которые есть в текущем отчете
+'Копирование всех сотрудников
 
 Range("Z2:Z500").Select
 Selection.Copy
 Sheets("Отчет по трудозатратам за 04.21").Select
 Range("A2:A500").Select
 Selection.Insert Shift:=xlDown
+
+'Цикл сверки сотрцдников, которых нет в таблице из Clockify
 
 Application.ScreenUpdating = False
 Application.Calculation = xlCalculationManual
@@ -178,7 +189,11 @@ ActiveSheet.DisplayPageBreaks = True
 Application.DisplayStatusBar = True
 Application.DisplayAlerts = True
 
+'Удаление дубликатов
+
 Range("A1").RemoveDuplicates 1
+
+'Ввод формулы для подсчета часов
 
 Range("F2").Select
 Application.CutCopyMode = False
@@ -187,29 +202,7 @@ Range("F2").Select
 Selection.AutoFill Destination:=Range("F2:F500"), Type:=xlFillDefault
 Range("F2:F500").Select
 
-Columns(10).Delete
-Columns(11).Delete
-Columns(12).Delete
-Columns(13).Delete
-Columns(14).Delete
-Columns(15).Delete
-Columns(16).Delete
-Columns(17).Delete
-Columns(18).Delete
-Columns(19).Delete
-Columns(20).Delete
-Columns(21).Delete
-Columns(22).Delete
-Columns(23).Delete
-Columns(24).Delete
-Columns(25).Delete
-Columns(26).Delete
-Columns(27).Delete
-Columns(28).Delete
-Columns(29).Delete
-Columns(30).Delete
-Columns(31).Delete
-
+'Удаление ненужных столбцов
 
 Columns(10).Delete
 Columns(11).Delete
@@ -233,8 +226,31 @@ Columns(28).Delete
 Columns(29).Delete
 Columns(30).Delete
 Columns(31).Delete
-
 Columns(10).Delete
+Columns(11).Delete
+Columns(12).Delete
+Columns(13).Delete
+Columns(14).Delete
+Columns(15).Delete
+Columns(16).Delete
+Columns(17).Delete
+Columns(18).Delete
+Columns(19).Delete
+Columns(20).Delete
+Columns(21).Delete
+Columns(22).Delete
+Columns(23).Delete
+Columns(24).Delete
+Columns(25).Delete
+Columns(26).Delete
+Columns(27).Delete
+Columns(28).Delete
+Columns(29).Delete
+Columns(30).Delete
+Columns(31).Delete
+Columns(10).Delete
+
+'Форматирования всей таблици
 
 Range("A:G").Font.Name = "Arial"
 
