@@ -168,8 +168,8 @@ Application.DisplayStatusBar = False
 Application.DisplayAlerts = False
 
 For i = 5000 To 1 Step -1
-    If Cells(i, 1) <> Cells(i, 11) Then
-        Cells(i, 11).Select
+    If Cells(i, 1) <> Cells(i, 10) Then
+        Cells(i, 10).Select
         Selection.Copy
         Cells(i, 1).Select
         Selection.Insert Shift:= xlDown
