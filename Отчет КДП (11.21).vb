@@ -204,7 +204,7 @@ Range("F2:F500").Select
 
 'Удаление ненужных столбцов
 
-Columns(11).Delete
+Columns(10).Delete
 Columns(11).Delete
 Columns(12).Delete
 Columns(13).Delete
