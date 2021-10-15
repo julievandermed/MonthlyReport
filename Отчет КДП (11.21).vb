@@ -53,7 +53,7 @@ Range("A1:F1").VerticalAlignment = xlCenter
 [B2:B500] = "20 дня"
 'Запись данных в скрытую ячейку для подсчета остатка по отгулам
 
-[O2:O500] = "176"
+[O2:O500] = "159"
 Range("O2:O500").Select
     With Selection.Font
         .ThemeColor = xlThemeColorDark1
@@ -201,14 +201,7 @@ Application.DisplayAlerts = True
 
 Range("A1").RemoveDuplicates 1
 
-'Ввод формулы для подсчета часов
 
-Range("F2").Select
-Application.CutCopyMode = False
-ActiveCell.FormulaR1C1 = "=RC[-2]-RC[-4]-RC[-1]+RC[-3]"
-Range("F2").Select
-Selection.AutoFill Destination:=Range("F2:F500"), Type:=xlFillDefault
-Range("F2:F500").Select
 
 'Удаление ненужных столбцов
 
