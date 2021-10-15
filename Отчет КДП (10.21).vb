@@ -16,17 +16,17 @@ Col1.Insert Shift:=xlShiftToRight
 Dim Col2 As Range: Set Col2 = Application.Range("B:B")
 Col2.Insert Shift:=xlShiftToRight
 
-[B1] = "Месячная норма"
+[B1] = "Кол-во рабочих дней"
 
 Dim Col3 As Range: Set Col3 = Application.Range("C:C")
 Col3.Insert Shift:=xlShiftToRight
 
-[C1] = "Остаток за прошлый месяц"
+[C1] = "Остаток за позапрошлый месяц"
 
 Dim Col4 As Range: Set Col4 = Application.Range("D:D")
 Col4.Insert Shift:=xlShiftToRight
 
-[D1] = "Фактически отработано за текущий месяц"
+[D1] = "Время без отгулов"
 
 Dim Col5 As Range: Set Col5 = Application.Range("E:E")
 Col5.Insert Shift:=xlShiftToRight
@@ -50,8 +50,16 @@ Range("A1:F1").VerticalAlignment = xlCenter
 
 'Ввод месячного часового норматива за Апрель
 
-[B2:B500] = "168"
+[B2:B500] = "21 дня"
+'Запись данных в скрытую ячейку для подсчета остатка по отгулам
 
+[O2:O500] = "176"
+Range("O2:O500").Select
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+        .TintAndShade = 0
+    End With                        
+                            
 'Удаление ненужных столбцов и строк в таблице по трудозатратам (без отгулов)
 
 Worksheets("Summary Report").Activate
@@ -250,10 +258,18 @@ Columns(30).Delete
 Columns(31).Delete
 Columns(10).Delete
 
-'Форматирования всей таблици
-
 Range("A:G").Font.Name = "Arial"
 
 Range("A:G").Font.Bold = False
 
+'Ввод формулы для подсчета часов
+
+Range("F2").Select
+Application.CutCopyMode = False
+ActiveCell.FormulaR1C1 = "=RC[-2]-RC[5]-RC[-1]+RC[-3]"
+Range("F2").Select
+Selection.AutoFill Destination:=Range("F2:F500"), Type:=xlFillDefault
+Range("F2:F500").Select
+                                                                                                        
+                                                                                                        
 End Sub
