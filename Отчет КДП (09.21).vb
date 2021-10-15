@@ -201,14 +201,7 @@ Application.DisplayAlerts = True
 
 Range("A1").RemoveDuplicates 1
 
-'Ввод формулы для подсчета часов
 
-Range("F2").Select
-Application.CutCopyMode = False
-ActiveCell.FormulaR1C1 = "=RC[-2]-RC[-4]-RC[-1]+RC[-3]"
-Range("F2").Select
-Selection.AutoFill Destination:=Range("F2:F500"), Type:=xlFillDefault
-Range("F2:F500").Select
 
 'Удаление ненужных столбцов
 
